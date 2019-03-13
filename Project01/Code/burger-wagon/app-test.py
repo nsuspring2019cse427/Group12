@@ -8,7 +8,7 @@ class BasicTestCase(unittest.TestCase):
     """ Basic initial testings. """
 
     def test_index(self):
-        """ Tests index in other words where the server is running fine. """
+        """ Tests index in other words where the app is running fine. """
 
         tester = app.test_client(self)
         response = tester.get('/', content_type='application/json; charset=UTF-8')
