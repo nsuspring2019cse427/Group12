@@ -8,7 +8,7 @@ class Menu(db.Model):
     title = db.Column(db.String, nullable=False)
     description = db.Column(db.String, nullable=True)
     price = db.Column(db.Float, nullable=False)
-    created_date = db.Column(db.DateTime, default=db.func.current_timestamp())
+    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
 
     def __init__(self, title, price):
         self.title = title
@@ -18,6 +18,21 @@ class Menu(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    def __repr__(self):
-        """ Represents the object instance of the model whenever it is queries. """
-        return '<title {}>'.format(self.title)
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    # def __repr__(self):
+    #     """ Represents the object instance of the model whenever it is queries. """
+    #     return '<title {}>'.format(self.title)
+
+    @property
+    def serialize(self):
+        """ Return object data in easily serializable format """
+        return {
+            'id': self.id,
+            'title': self.title,
+            'description': self.description,
+            'price': self.price,
+            'date_created': self.date_created.isoformat()
+        }
