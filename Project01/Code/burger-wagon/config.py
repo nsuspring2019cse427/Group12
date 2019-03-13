@@ -2,7 +2,7 @@
 
 """
 
-Configuration of Flask for different cases.
+Configuration of Flask for different environments.
 
 """
 
@@ -11,7 +11,7 @@ import os
 
 
 class BaseConfig(object):
-    # configuration
+    """" Parent configuration class. """
 
     DEBUG = False
     TESTING = False
@@ -20,6 +20,7 @@ class BaseConfig(object):
     USERNAME = 'admin'
     PASSWORD = '123'
 
+    # base directory of the app/server
     basedir = os.path.abspath(os.path.dirname(__file__))
 
     DATABASE = 'burger_wagon.db'
@@ -40,12 +41,15 @@ class DevelopmentConfig(BaseConfig):
 class TestingConfig(BaseConfig):
     DEBUG = False
     TESTING = True
+    DATABASE = 'test.db'
+    DATABASE_PATH = os.path.join(BaseConfig.basedir, DATABASE)
+
+    # database config
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + DATABASE_PATH
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 app_config = {
     'development': DevelopmentConfig,
     'testing': TestingConfig,
 }
-
-
-
