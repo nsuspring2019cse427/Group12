@@ -17,7 +17,7 @@ class BasicTestCase(unittest.TestCase):
     def test_database(self):
         """ Tests whether database exists. """
 
-        exists = os.path.exists('burger_wagon.db')
+        exists = os.path.exists('burger-wagon/burger_wagon.db')
         self.assertTrue(exists)
 
 
