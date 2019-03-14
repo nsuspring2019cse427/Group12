@@ -12,7 +12,7 @@ class BasicTestCase(unittest.TestCase):
 
         tester = create_app('testing').test_client(self)
         response = tester.get('/', content_type='application/json; charset=UTF-8')
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 200)
 
     def test_database_filepath(self):
         """ Tests whether database exists. """
