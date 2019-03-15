@@ -40,6 +40,12 @@ class MenuResourceTestCase(unittest.TestCase):
             "price": 120.00
         })
 
+        self.menu_item2 = json.dumps({
+            "title": "Naga burger",
+            "description": "Extremely spicy burgers for the spice lovers!",
+            "price": 125.00
+        })
+
         # binds the app to the current context
         with self.app.app_context():
             # create all tables of database
