@@ -9,11 +9,11 @@ db = SQLAlchemy()
 
 
 def create_app(config_name):
-    """ create_app creates the flask server instance with specified configuration
+    """ create_app creates the flask server instance with specified configuration.
 
-        :param config_name: configuration type of the flask environment
-        type config_nam: str
-        :return: flask app instance
+        :param      config_name: configuration type of the flask environment
+        :type       config_name: str
+        :return:    flask app instance
     """
 
     app = Flask(__name__, instance_relative_config=True)

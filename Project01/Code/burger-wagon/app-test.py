@@ -51,6 +51,13 @@ class MenuResourceTestCase(unittest.TestCase):
             # create all tables of database
             db.create_all()
 
+    def test_menu_item_creation(self):
+        """ Test API can create a menu item (POST request). """
+
+        res = self.client().post('/menu', data=self.menu_item, content_type='application/json')
+        self.assertEqual(res.status_code, 201)
+        self.assertIn('Exotic expired cheese burger', str(res.data))
+
     def test_empty_database(self):
         """ Ensure database is blank. """
 
