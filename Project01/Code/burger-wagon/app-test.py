@@ -45,6 +45,13 @@ class MenuResourceTestCase(unittest.TestCase):
             # create all tables of database
             db.create_all()
 
+        def test_empty_database(self):
+                """ Ensure database is blank. """
+
+            res = self.client().get('/menu')
+            self.assertIn('', str(res.data))
+            self.assertEqual(res.status_code, 404)
+
     # @after
     def tearDown(self):
         """ Tear down all initialized variables and database. """
