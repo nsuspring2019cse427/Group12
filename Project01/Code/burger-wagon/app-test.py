@@ -50,7 +50,14 @@ class MenuResourceTestCase(unittest.TestCase):
         with self.app.app_context():
             # create all tables of database
             db.create_all()
+ 
+    def test_empty_database(self):
+        """ Ensure database is blank. """
 
+        res = self.client().get('/menu')
+        self.assertIn('', str(res.data))
+        self.assertEqual(res.status_code, 404)
+        
     def test_menu_item_creation_without_title_value(self):
         """ Test API cannot create a menu item without title value (POST request). """
 
@@ -72,12 +79,6 @@ class MenuResourceTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 201)
         self.assertIn('Exotic expired cheese burger', str(res.data))
 
-    def test_empty_database(self):
-        """ Ensure database is blank. """
-
-        res = self.client().get('/menu')
-        self.assertIn('', str(res.data))
-        self.assertEqual(res.status_code, 404)
 
     # @after
     def tearDown(self):
