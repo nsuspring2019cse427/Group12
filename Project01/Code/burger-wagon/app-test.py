@@ -52,9 +52,16 @@ class MenuResourceTestCase(unittest.TestCase):
             db.create_all()
 
     def test_menu_item_creation_without_title_value(self):
-        """ Test API can create a menu item without any value posted (POST request)"""
+        """ Test API cannot create a menu item without title value (POST request). """
 
         res = self.client().post('/menu', data=json.dumps({"price": 120}), content_type='application/json')
+        self.assertEqual(res.status_code, 400)
+        self.assertIn('both the title and price of the item must be provided', str(res.data))
+
+    def test_menu_item_creation_without_price_value(self):
+        """ Test API cannot create a menu item without price value (POST request). """
+
+        res = self.client().post('/menu', data=json.dumps({"title": "Burger"}), content_type='application/json')
         self.assertEqual(res.status_code, 400)
         self.assertIn('both the title and price of the item must be provided', str(res.data))
 
