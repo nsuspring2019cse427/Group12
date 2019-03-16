@@ -8,6 +8,7 @@ db = SQLAlchemy()
 from app import models
 from config import app_config
 
+
 def create_app(config_name):
     """ create_app creates the flask server instance with specified configuration.
 
@@ -28,9 +29,11 @@ def create_app(config_name):
         """ Api endpoints for Menu. """
 
         def post(self):
+            """ CREATE: menu item. """
+            # json response
             data = request.get_json(force=True)
 
-            if 'title' in data:
+            if 'title' in data and 'price' in data:
                 new_entry = models.Menu(data['title'], data['price'])
             else:
                 return {'message': 'both the title and price of the item must be provided'}, 400
