@@ -23,14 +23,17 @@ def create_app(config_name):
     api.namespace(name='', description='menu of all the items available and CRUD operations')
 
     # ----------------------- controllers  -----------------------------
+
     class MenuResource(Resource):
         """ Api endpoints for Menu. """
 
         def post(self):
-            """ CREATE: menu item. """
             data = request.get_json(force=True)
 
-            new_entry = models.Menu(data['title'], data['price'])
+            if 'title' in data:
+                new_entry = models.Menu(data['title'], data['price'])
+            else:
+                return {'message': 'both the title and price of the item must be provided'}, 400
 
             if 'description' in data:
                 new_entry.description = data['description']
@@ -48,6 +51,7 @@ def create_app(config_name):
             return response, 201
 
     # -----------------------       urls        -----------------------------
+
     api.add_resource(MenuResource, "/menu")
 
     return app
