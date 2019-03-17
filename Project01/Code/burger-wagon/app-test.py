@@ -79,6 +79,17 @@ class MenuResourceTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 201)
         self.assertIn('Exotic expired cheese burger', str(res.data))
 
+    def test_api_can_get_menu_list(self):
+        """ Test API can get a bucketlist (GET request)."""
+
+        res = self.client().post('/menu', data=self.menu_item, content_type='application/json')
+        self.assertEqual(res.status_code, 201)
+        res = self.client().post('/menu', data=self.menu_item2, content_type='application/json')
+        self.assertEqual(res.status_code, 201)
+        res = self.client().get('/menu')
+        self.assertEqual(res.status_code, 200)
+        self.assertIn('Exotic expired cheese burger', str(res.data))
+        self.assertIn('Naga burger', str(res.data))
 
     # @after
     def tearDown(self):
