@@ -28,6 +28,15 @@ def create_app(config_name):
     class MenuResource(Resource):
         """ Api endpoints for Menu. """
 
+        def get(self):
+            """ GET: menu list. """
+            query_list = models.Menu.query.all()
+            # if query not empty return a list of the serialized query_list
+            if query_list:
+                return [i.serialize for i in query_list], 200
+
+            return '', 404
+
         def post(self):
             """ CREATE: menu item. """
             # json response
