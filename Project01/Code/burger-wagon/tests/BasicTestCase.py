@@ -18,7 +18,9 @@ class BasicTestCase(unittest.TestCase):
     def test_database_filepath(self):
         """ Tests whether database exists in the filepath defined in config. """
 
-        exists = os.path.exists('burger_wagon.db')
+        abs_path = os.path.abspath(os.path.dirname(__file__)).split('\\tests')[0]
+        db_path = abs_path + '\\burger_wagon.db'
+        exists = os.path.exists(db_path)
         self.assertTrue(exists)
 
 
