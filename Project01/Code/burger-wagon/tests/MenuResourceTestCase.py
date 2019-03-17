@@ -1,25 +1,7 @@
 import json
-import os
 import unittest
 
 from app import create_app, db
-
-
-class BasicTestCase(unittest.TestCase):
-    """ Basic initial testings. """
-
-    def test_index(self):
-        """ Tests index in other words whether the server is running fine. """
-
-        tester = create_app('testing').test_client(self)
-        response = tester.get('/', content_type='application/json; charset=UTF-8')
-        self.assertEqual(response.status_code, 200)
-
-    def test_database_filepath(self):
-        """ Tests whether database exists in the filepath defined in config. """
-
-        exists = os.path.exists('burger_wagon.db')
-        self.assertTrue(exists)
 
 
 class MenuResourceTestCase(unittest.TestCase):
@@ -50,14 +32,14 @@ class MenuResourceTestCase(unittest.TestCase):
         with self.app.app_context():
             # create all tables of database
             db.create_all()
- 
+
     def test_empty_database(self):
         """ Ensure database is blank. """
 
         res = self.client().get('/menu')
         self.assertIn('', str(res.data))
         self.assertEqual(res.status_code, 404)
-        
+
     def test_menu_item_creation_without_title_value(self):
         """ Test API cannot create a menu item without title value (POST request). """
 
