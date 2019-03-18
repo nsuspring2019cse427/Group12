@@ -26,7 +26,9 @@ def create_app(config_name):
     # ----------------------- controllers  -----------------------------
 
     class MenuResource(Resource):
-        """ Api endpoints for Menu. """
+        """ Api endpoints for Menu.
+            :API endpoint: /menu
+        """
 
         def get(self):
             """ GET: menu list. """
@@ -62,8 +64,29 @@ def create_app(config_name):
 
             return response, 201
 
+    class MenuDetailsResource(Resource):
+        """ Api endpoints for Menu details.
+            :API endpoint: /menu/<int:menu_id>
+        """
+
+        def get(self, menu_id):
+            pass
+
+        def put(self, menu_id):
+            """ Update:  menu item with given menu ID. """
+            data = request.get_json(force=True)
+
+            item = models.Menu.query.get(menu_id)
+
+            if not item:
+                return {"error": "item not found"}, 404
+
+        def delete(self, menu_id):
+            pass
+
     # -----------------------       urls        -----------------------------
 
     api.add_resource(MenuResource, "/menu")
+    api.add_resource(MenuDetailsResource, "/menu/<int:menu_id>")
 
     return app

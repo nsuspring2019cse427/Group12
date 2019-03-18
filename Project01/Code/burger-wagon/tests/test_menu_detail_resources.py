@@ -39,7 +39,7 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
             {"title": "Molten Cheese Burger", "description": "Tasty!", "price": 123.0}))
 
         self.assertEqual(res.status_code, 404)
-        self.assertIn('not found', str(res.data))
+        self.assertIn('item not found', str(res.data))
 
     # @after
     def tearDown(self):
