@@ -34,11 +34,13 @@ class BaseConfig(object):
 
 
 class DevelopmentConfig(BaseConfig):
+    """ Configuration for development environment. """
     DEBUG = True
     TESTING = True
 
 
 class TestingConfig(BaseConfig):
+    """ Configuration for testing environment. """
     DEBUG = False
     TESTING = True
     DATABASE = 'test.db'
@@ -49,7 +51,13 @@ class TestingConfig(BaseConfig):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
+class ProductionConfig(BaseConfig):
+    """ Configuration for production environment. """
+    SECRET_KEY = '@W#DFG*&^^&TG78gh67rf45ef6h98jj9j032@#$%^&*WEreallyNEEDtheMARKS,SIR,thanks_in_advance'
+
+
 app_config = {
     'development': DevelopmentConfig,
     'testing': TestingConfig,
+    'production': ProductionConfig
 }
