@@ -41,6 +41,19 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 404)
         self.assertIn('item not found', str(res.data))
 
+    def test_menu_item_can_be_edited(self):
+        """ Test API can edit an existing menu item. (PUT request). """
+
+        res = self.client().post('/menu', data=self.menu_item2)
+        self.assertEqual(res.status_code, 201)
+
+        res = self.client().put('/menu/1', data=json.dumps(
+            {"title": "Molten Cheese Burger", "description": "Tasty!", "price": 123.0}))
+        self.assertEqual(res.status_code, 200)
+
+        results = self.client().get('/menu/1')
+        self.assertIn('Molten', str(results.data))
+
     # @after
     def tearDown(self):
         """ Tear down all initialized variables and database. """
