@@ -81,6 +81,27 @@ def create_app(config_name):
             if not item:
                 return {"error": "item not found"}, 404
 
+            if 'title' in data:
+                item.title = data['title']
+
+            if 'description' in data:
+                item.description = data['description']
+
+            if 'price' in data:
+                item.price = data['price']
+
+            item.save()
+
+            response = {
+                'id': item.id,
+                'title': item.title,
+                'description': item.description,
+                'price': item.price,
+                'date_created': item.date_created.isoformat()
+            }
+
+            return response, 200
+
         def delete(self, menu_id):
             pass
 
