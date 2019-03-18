@@ -32,6 +32,15 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
             # create all tables
             db.create_all()
 
+    def test_menu_item_can_be_edited_not_found(self):
+        """ Test API cannot edit an existing menu item which cannot be found. (PUT request). """
+
+        res = self.client().put('/menu/0', data=json.dumps(
+            {"title": "Molten Cheese Burger", "description": "Tasty!", "price": 123.0}))
+
+        self.assertEqual(res.status_code, 404)
+        self.assertIn('not found', str(res.data))
+
     # @after
     def tearDown(self):
         """ Tear down all initialized variables and database. """
