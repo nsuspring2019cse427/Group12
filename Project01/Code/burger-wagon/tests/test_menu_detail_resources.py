@@ -32,6 +32,18 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
             # create all tables
             db.create_all()
 
+    def test_api_can_get_menu_item_by_id(self):
+        """ Test API can get a single item by using it's id. """
+
+        res = self.client().post('/menu', data=self.menu_item2, content_type='application/json')
+        self.assertEqual(res.status_code, 201)
+
+        result_in_json = json.loads(res.data.decode('utf-8').replace("'", "\""))
+        result = self.client().get(f'/menu/{format(result_in_json["id"])}')
+
+        self.assertEqual(result.status_code, 200)
+        self.assertIn('Naga burger', str(result.data))
+
     def test_menu_item_can_be_edited_not_found(self):
         """ Test API cannot edit an existing menu item which cannot be found. (PUT request). """
 
@@ -62,7 +74,6 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 201)
         res = self.client().delete('/menu/44')
         self.assertEqual(res.status_code, 404)
-
 
     # @after
     def tearDown(self):
