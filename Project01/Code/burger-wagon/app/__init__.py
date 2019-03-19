@@ -103,7 +103,11 @@ def create_app(config_name):
             return response, 200
 
         def delete(self, menu_id):
-            pass
+            entries = models.Menu.query.get(menu_id)
+            if entries:
+                return entries.delete(), 204
+
+            return {"error": "not found"}, 404
 
     # -----------------------       urls        -----------------------------
 

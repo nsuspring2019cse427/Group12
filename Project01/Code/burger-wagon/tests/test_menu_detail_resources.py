@@ -75,6 +75,18 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
         res = self.client().delete('/menu/44')
         self.assertEqual(res.status_code, 404)
 
+    def test_menu_item_deletion(self):
+        """ Test API can delete an existing menu item. (DELETE request). """
+
+        json_data = json.dumps({'title': 'Regular burger', 'price': 23})
+        res = self.client().post('/menu', data=json_data, content_type='application/json')
+        self.assertEqual(res.status_code, 201)
+        res = self.client().delete('/menu/1')
+        self.assertEqual(res.status_code, 204)
+        # Test to see if it exists, should return a 404
+        result = self.client().get('/menu/1')
+        self.assertEqual(result.status_code, 404)
+
     # @after
     def tearDown(self):
         """ Tear down all initialized variables and database. """
