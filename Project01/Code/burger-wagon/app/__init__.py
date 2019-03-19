@@ -32,6 +32,7 @@ def create_app(config_name):
 
         def get(self):
             """ GET: menu list. """
+
             query_list = models.Menu.query.all()
             # if query not empty return a list of the serialized query_list
             if query_list:
@@ -41,6 +42,7 @@ def create_app(config_name):
 
         def post(self):
             """ CREATE: menu item. """
+
             # json response
             data = request.get_json(force=True)
 
@@ -70,10 +72,17 @@ def create_app(config_name):
         """
 
         def get(self, menu_id):
-            pass
+            """ GET:  menu item with given menu ID. """
+
+            entries = models.Menu.query.get(menu_id)
+            if entries:
+                return entries.serialize, 200
+
+            return {"error": "not found"}, 404
 
         def put(self, menu_id):
-            """ Update:  menu item with given menu ID. """
+            """ PUT:  menu item with given menu ID. """
+
             data = request.get_json(force=True)
 
             item = models.Menu.query.get(menu_id)
@@ -103,7 +112,10 @@ def create_app(config_name):
             return response, 200
 
         def delete(self, menu_id):
+            """ DELETE:  menu item with given menu ID. """
+
             entries = models.Menu.query.get(menu_id)
+
             if entries:
                 return entries.delete(), 204
 
