@@ -32,7 +32,7 @@ class PostPutInputSpaceTestCase(unittest.TestCase):
 
         res = self.client().post('/menu', data=json.dumps(self.menu_item_numerical), content_type='application/json')
         self.assertEqual(res.status_code, 400)
-        self.assertIn('both the title and price of the item must be provided', str(res.data))
+        self.assertIn('food title can only be alphabets', str(res.data))
 
     # @after
     def tearDown(self):
