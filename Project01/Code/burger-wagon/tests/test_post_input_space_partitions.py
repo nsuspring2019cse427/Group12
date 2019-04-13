@@ -4,7 +4,7 @@ import unittest
 from app import create_app, db
 
 
-class PostPutInputSpaceTestCase(unittest.TestCase):
+class PostInputSpaceTestCase(unittest.TestCase):
     """ This class represents testing input space partitioning of all POST and PUT endpoints. """
 
     # @before fixture
@@ -34,14 +34,14 @@ class PostPutInputSpaceTestCase(unittest.TestCase):
             db.create_all()
 
     def test_menu_item_creation_should_not_accept_empty_title(self):
-        """ Test API should not create a menu item with empty title (POST request). """
+        """ - Test API should not create a menu item with empty title (POST request). """
 
         res = self.client().post('/menu', data=self.menu_item_numerical, content_type='application/json')
         self.assertEqual(res.status_code, 400)
         self.assertIn('food title can only be alphabets', str(res.data))
 
     def test_menu_item_creation_should_not_accept_numerical_title(self):
-        """ Test API should not create a menu item with numerical title value (POST request). """
+        """ - Test API should not create a menu item with numerical title value (POST request). """
 
         res = self.client().post('/menu', data=self.menu_item_numerical, content_type='application/json')
         self.assertEqual(res.status_code, 400)
