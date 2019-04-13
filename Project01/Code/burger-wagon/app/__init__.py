@@ -47,7 +47,8 @@ def create_app(config_name):
             data = request.get_json(force=True)
 
             if 'title' in data and 'price' in data:
-                title = data['title'].replace(' ', '')
+                title = data['title']
+                title = title.replace(' ', '')
                 if not title.isalpha():
                     return {'message': 'food title can only be alphabets'}, 400
                 new_entry = models.Menu(data['title'], data['price'])

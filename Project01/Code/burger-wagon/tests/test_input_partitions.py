@@ -15,9 +15,9 @@ class PostPutInputSpaceTestCase(unittest.TestCase):
         self.app = create_app(config_name="testing")
         self.client = self.app.test_client
 
-        # fixture: dummy used for POST endpoints
+        # fixture/ data-points : dummy used for POST endpoints
         self.menu_item_numerical = json.dumps({
-            "title": "57983479875",
+            "title": "57983479",
             "description": "pet kharap hobe na 50%",
             "price": 1200.00
         })
@@ -30,7 +30,7 @@ class PostPutInputSpaceTestCase(unittest.TestCase):
     def test_menu_item_creation_should_not_accept_numerical_title(self):
         """ Test API will not create a menu item with numerical title value (POST request). """
 
-        res = self.client().post('/menu', data=json.dumps(self.menu_item_numerical), content_type='application/json')
+        res = self.client().post('/menu', data=self.menu_item_numerical, content_type='application/json')
         self.assertEqual(res.status_code, 400)
         self.assertIn('food title can only be alphabets', str(res.data))
 
