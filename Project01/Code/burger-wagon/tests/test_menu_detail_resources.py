@@ -69,6 +69,13 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
     def test_menu_item_deletion_not_found(self):
         """ Test API can delete an existing menu item. (DELETE request). """
 
+        """ GRAPH PARTITIONING: corresponding graph for
+                     delete method path:cse427project\Group12\Project01\Documentation\ resources\delete method graph.jpg
+                     
+                     covers edges: {1,3}
+                     test path: [1,3]
+                      """
+
         json_data = json.dumps({'title': 'Regular burger', 'price': 23})
         res = self.client().post('/menu', data=json_data, content_type='application/json')
         self.assertEqual(res.status_code, 201)
@@ -77,6 +84,14 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
 
     def test_menu_item_deletion(self):
         """ Test API can delete an existing menu item. (DELETE request). """
+
+        """ GRAPH PARTITIONING: corresponding graph for
+                     delete method path:cse427project\Group12\Project01\Documentation\ resources\delete method graph.jpg
+                     
+                     covers edges: {1,2}
+                     test path: [1,2]
+                      """
+
 
         json_data = json.dumps({'title': 'Regular burger', 'price': 23})
         res = self.client().post('/menu', data=json_data, content_type='application/json')
