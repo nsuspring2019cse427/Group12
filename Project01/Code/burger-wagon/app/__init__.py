@@ -123,6 +123,10 @@ def create_app(config_name):
         def delete(self, menu_id):
             """ DELETE:  menu item with given menu ID. """
 
+            """ GRAPH PARTITIONING: corresponding graph for
+             delete method path:cse427project\Group12\Project01\Documentation\ resources\delete method graph.jpg
+              """
+
             entries = models.Menu.query.get(menu_id)
 
             if entries:
