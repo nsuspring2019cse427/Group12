@@ -70,7 +70,7 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
         """ Test API can delete an existing menu item. (DELETE request). """
 
         """ GRAPH PARTITIONING: corresponding graph for
-                     delete method path:cse427project\Group12\Project01\Documentation\ resources\delete method graph.jpg
+                     delete method path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/delete%20method%20graph.jpg
                      
                      covers edges: {1,3}
                      test path: [1,3]
@@ -86,7 +86,7 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
         """ Test API can delete an existing menu item. (DELETE request). """
 
         """ GRAPH PARTITIONING: corresponding graph for
-                     delete method path:cse427project\Group12\Project01\Documentation\ resources\delete method graph.jpg
+                     delete method path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/delete%20method%20graph.jpg
                      
                      covers edges: {1,2}
                      test path: [1,2]

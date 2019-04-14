@@ -124,7 +124,7 @@ def create_app(config_name):
             """ DELETE:  menu item with given menu ID. """
 
             """ GRAPH PARTITIONING: corresponding graph for
-             delete method path:cse427project\Group12\Project01\Documentation\ resources\delete method graph.jpg
+             delete method path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/delete%20method%20graph.jpg
               """
 
             entries = models.Menu.query.get(menu_id)
