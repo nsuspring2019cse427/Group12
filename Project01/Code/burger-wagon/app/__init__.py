@@ -43,6 +43,10 @@ def create_app(config_name):
         def post(self):
             """ CREATE: menu item. """
 
+            """ GRAPH PARTITIONING: corresponding graph for
+                        post method path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
+                         """
+
             # json response
             data = request.get_json(force=True)
 
