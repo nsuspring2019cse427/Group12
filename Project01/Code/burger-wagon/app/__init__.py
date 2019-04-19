@@ -87,6 +87,10 @@ def create_app(config_name):
         def get(self, menu_id):
             """ GET:  menu item with given menu ID. """
 
+            """ GRAPH PARTITIONING: corresponding graph for
+                         get function by id path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20by%20id%20graph.jpg
+                          """
+
             entries = models.Menu.query.get(menu_id)
             if entries:
                 return entries.serialize, 200
