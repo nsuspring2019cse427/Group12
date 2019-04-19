@@ -44,6 +44,18 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
         self.assertEqual(result.status_code, 200)
         self.assertIn('Naga burger', str(result.data))
 
+    def test_api_can_not_get_menu_item_by_id(self):
+        """Test API can not get a single item list by using it's id."""
+
+        res = self.client().post('/menu', data=self.menu_item2, content_type='application/json')
+        self.assertEqual(res.status_code, 201)
+        result_in_json = json.loads(res.data.decode('utf-8').replace("'", "\""))
+        res1 = self.client().delete('/menu/1')
+        self.assertEqual(res1.status_code, 204)
+        result = self.client().get(f'/menu/{format(result_in_json["id"])}')
+        self.assertEqual(result.status_code, 404)
+
+
     def test_menu_item_can_be_edited_not_found(self):
         """ Test API cannot edit an existing menu item which cannot be found. (PUT request). """
 
