@@ -35,6 +35,13 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
     def test_api_can_get_menu_item_by_id(self):
         """ Test API can get a single item by using it's id. """
 
+        """ GRAPH PARTITIONING: GRAPH PARTITIONING: corresponding graph for
+                         get function by id path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20by%20id%20graph.jpg
+
+                             covers edges: {1,2}
+                             test path: [1,2]
+                              """
+
         res = self.client().post('/menu', data=self.menu_item2, content_type='application/json')
         self.assertEqual(res.status_code, 201)
 
@@ -46,6 +53,13 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
 
     def test_api_can_not_get_menu_item_by_id(self):
         """Test API can not get a single item list by using it's id."""
+
+        """ GRAPH PARTITIONING: GRAPH PARTITIONING: corresponding graph for
+                         get function by id path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20by%20id%20graph.jpg
+
+                             covers edges: {1,3}
+                             test path: [1,3]
+                              """
 
         res = self.client().post('/menu', data=self.menu_item2, content_type='application/json')
         self.assertEqual(res.status_code, 201)
