@@ -33,6 +33,10 @@ def create_app(config_name):
         def get(self):
             """ GET: menu list. """
 
+            """ GRAPH PARTITIONING: corresponding graph for
+                                     get function for getting bucketlist path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20for%20getting%20bucketlist%20graph.jpg
+                                      """
+
             query_list = models.Menu.query.all()
             # if query not empty return a list of the serialized query_list
             if query_list:
