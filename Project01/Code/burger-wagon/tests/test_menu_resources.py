@@ -94,6 +94,19 @@ class MenuResourceTestCase(unittest.TestCase):
         self.assertIn('Exotic expired cheese burger', str(res.data))
         self.assertIn('Naga burger', str(res.data))
 
+    def test_api_can_not_get_menu_list(self):
+        """Test API can not get a bucketlist (GET request)."""
+        res = self.client().post('/menu', data=self.menu_item, content_type='application/json')
+        self.assertEqual(res.status_code, 201)
+        res = self.client().post('/menu', data=self.menu_item2, content_type='application/json')
+        self.assertEqual(res.status_code, 201)
+        res1 = self.client().delete('/menu/1')
+        self.assertEqual(res1.status_code, 204)
+        res2 = self.client().delete('/menu/2')
+        self.assertEqual(res2.status_code, 204)
+        result = self.client().get('/menu')
+        self.assertEqual(result.status_code, 404)
+
     # @after
     def tearDown(self):
         """ Tear down all initialized variables and database. """
