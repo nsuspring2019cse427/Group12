@@ -85,6 +85,13 @@ class MenuResourceTestCase(unittest.TestCase):
     def test_api_can_get_menu_list(self):
         """ Test API can get a bucketlist (GET request)."""
 
+        """ GRAPH PARTITIONING: corresponding graph for
+                                             get function for getting bucketlist path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20for%20getting%20bucketlist%20graph.jpg
+                                             
+                                             cover edges:{1,2}
+                                             test path: [1,2]
+                                              """
+
         res = self.client().post('/menu', data=self.menu_item, content_type='application/json')
         self.assertEqual(res.status_code, 201)
         res = self.client().post('/menu', data=self.menu_item2, content_type='application/json')
@@ -96,6 +103,13 @@ class MenuResourceTestCase(unittest.TestCase):
 
     def test_api_can_not_get_menu_list(self):
         """Test API can not get a bucketlist (GET request)."""
+
+        """ GRAPH PARTITIONING: corresponding graph for
+                                             get function for getting bucketlist path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20for%20getting%20bucketlist%20graph.jpg
+                                             cover edges:{1,3}
+                                             test path: [1,3]
+                                              """
+
         res = self.client().post('/menu', data=self.menu_item, content_type='application/json')
         self.assertEqual(res.status_code, 201)
         res = self.client().post('/menu', data=self.menu_item2, content_type='application/json')
