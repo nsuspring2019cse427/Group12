@@ -31,11 +31,12 @@ def create_app(config_name):
         """
 
         def get(self):
-            """ GET: menu list. """
+            """ GET: menu list.
 
-            """ GRAPH PARTITIONING: corresponding graph for
-                                     get function for getting bucketlist path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20for%20getting%20bucketlist%20graph.jpg
-                                      """
+             GRAPH PARTITIONING: corresponding graph can be found here-
+             https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20for%20getting%20bucketlist%20graph.jpg
+
+            """
 
             query_list = models.Menu.query.all()
             # if query not empty return a list of the serialized query_list
@@ -45,11 +46,12 @@ def create_app(config_name):
             return '', 404
 
         def post(self):
-            """ CREATE: menu item. """
+            """ CREATE: menu item.
 
-            """ GRAPH PARTITIONING: corresponding graph for
-                        post method path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
-                         """
+             GRAPH PARTITIONING: corresponding graph can be found here-
+             https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
+
+            """
 
             # json response
             data = request.get_json(force=True)
@@ -89,11 +91,12 @@ def create_app(config_name):
         """
 
         def get(self, menu_id):
-            """ GET:  menu item with given menu ID. """
+            """ GET:  menu item with given menu ID.
 
-            """ GRAPH PARTITIONING: corresponding graph for
-                         get function by id path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20by%20id%20graph.jpg
-                          """
+             GRAPH PARTITIONING: corresponding graph can be found here
+             https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20by%20id%20graph.jpg
+
+            """
 
             entries = models.Menu.query.get(menu_id)
             if entries:
@@ -133,11 +136,12 @@ def create_app(config_name):
             return response, 200
 
         def delete(self, menu_id):
-            """ DELETE:  menu item with given menu ID. """
+            """ DELETE:  menu item with given menu ID.
 
-            """ GRAPH PARTITIONING: corresponding graph for
-             delete method path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/delete%20method%20graph.jpg
-              """
+             GRAPH PARTITIONING: corresponding graph can be found here-
+             https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/delete%20method%20graph.jpg
+
+            """
 
             entries = models.Menu.query.get(menu_id)
 
