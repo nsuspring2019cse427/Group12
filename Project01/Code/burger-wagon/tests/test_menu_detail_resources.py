@@ -54,12 +54,12 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
     def test_api_can_not_get_menu_item_by_id(self):
         """Test API can not get a single item list by using it's id."""
 
-        """ GRAPH PARTITIONING: GRAPH PARTITIONING: corresponding graph for
-                         get function by id path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20by%20id%20graph.jpg
+        """ GRAPH PARTITIONING: corresponding graph:
+        https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20by%20id%20graph.jpg
 
-                             covers edges: {1,3}
-                             test path: [1,3]
-                              """
+        covers edges: {1,3}
+        test path: [1,3]
+        """
 
         res = self.client().post('/menu', data=self.menu_item2, content_type='application/json')
         self.assertEqual(res.status_code, 201)
@@ -68,7 +68,6 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
         self.assertEqual(res1.status_code, 204)
         result = self.client().get(f'/menu/{format(result_in_json["id"])}')
         self.assertEqual(result.status_code, 404)
-
 
     def test_menu_item_can_be_edited_not_found(self):
         """ Test API cannot edit an existing menu item which cannot be found. (PUT request). """
@@ -95,12 +94,12 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
     def test_menu_item_deletion_not_found(self):
         """ Test API can delete an existing menu item. (DELETE request). """
 
-        """ GRAPH PARTITIONING: corresponding graph for
-                     delete method path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/delete%20method%20graph.jpg
-                     
-                     covers edges: {1,3}
-                     test path: [1,3]
-                      """
+        """ GRAPH PARTITIONING: corresponding graph:
+        https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/delete%20method%20graph.jpg
+        
+        covers edges: {1,3}
+        test path: [1,3]
+        """
 
         json_data = json.dumps({'title': 'Regular burger', 'price': 23})
         res = self.client().post('/menu', data=json_data, content_type='application/json')
@@ -111,13 +110,12 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
     def test_menu_item_deletion(self):
         """ Test API can delete an existing menu item. (DELETE request). """
 
-        """ GRAPH PARTITIONING: corresponding graph for
-                     delete method path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/delete%20method%20graph.jpg
-                     
-                     covers edges: {1,2}
-                     test path: [1,2]
-                      """
-
+        """ GRAPH PARTITIONING: corresponding graph:
+        https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/delete%20method%20graph.jpg
+         
+         covers edges: {1,2}
+         test path: [1,2]
+        """
 
         json_data = json.dumps({'title': 'Regular burger', 'price': 23})
         res = self.client().post('/menu', data=json_data, content_type='application/json')

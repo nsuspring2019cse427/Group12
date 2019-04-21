@@ -57,8 +57,7 @@ def create_app(config_name):
             data = request.get_json(force=True)
 
             if 'title' in data and 'price' in data:
-                title = data['title']
-                title = title.replace(' ', '')
+                title = data['title'].replace(' ', '')
 
                 if not title:
                     return {'error': 'invalid input: title cannot be empty'}, 400
@@ -114,9 +113,17 @@ def create_app(config_name):
             if not item:
                 return {"error": "item not found"}, 404
 
-            if 'title' in data:
-                item.title = data['title']
+            if 'title' in data and 'price' in data:
+                title = data['title'].replace(' ', '')
 
+                if not title:
+                    return {'error': 'invalid input: title cannot be empty'}, 400
+
+                if not title.isalpha():
+                    return {'error': 'invalid input: food title can only be alphabets'}, 400
+            else:
+                return {'error': 'both the title and price of the item must be provided'}, 400
+            item.title = title
             if 'description' in data:
                 item.description = data['description']
 
