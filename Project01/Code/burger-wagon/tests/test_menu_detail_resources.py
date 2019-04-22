@@ -33,7 +33,7 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
             db.create_all()
 
     def test_api_can_get_menu_item_by_id(self):
-        """ Test API can get a single item by using it's id. """
+        """ - Test API can get a single item by using it's id. """
 
         """ GRAPH PARTITIONING: GRAPH PARTITIONING: corresponding graph for
                          get function by id path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20by%20id%20graph.jpg
@@ -52,7 +52,7 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
         self.assertIn('Naga burger', str(result.data))
 
     def test_api_can_not_get_menu_item_by_id(self):
-        """Test API can not get a single item list by using it's id."""
+        """ - Test API can not get a single item list by using it's id."""
 
         """ GRAPH PARTITIONING: corresponding graph:
         https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20by%20id%20graph.jpg
@@ -70,7 +70,7 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
         self.assertEqual(result.status_code, 404)
 
     def test_menu_item_can_be_edited_not_found(self):
-        """ Test API cannot edit an existing menu item which cannot be found. (PUT request). """
+        """ - Test API cannot edit an existing menu item which cannot be found. (PUT request). """
 
         res = self.client().put('/menu/0', data=json.dumps(
             {"title": "Molten Cheese Burger", "description": "Tasty!", "price": 123.0}))
@@ -79,7 +79,7 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
         self.assertIn('item not found', str(res.data))
 
     def test_menu_item_can_be_edited(self):
-        """ Test API can edit an existing menu item. (PUT request). """
+        """ - Test API can edit an existing menu item. (PUT request). """
 
         res = self.client().post('/menu', data=self.menu_item2)
         self.assertEqual(res.status_code, 201)
@@ -92,7 +92,7 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
         self.assertIn('Molten', str(results.data))
 
     def test_menu_item_deletion_not_found(self):
-        """ Test API can delete an existing menu item. (DELETE request). """
+        """ - Test API can delete an existing menu item. (DELETE request). """
 
         """ GRAPH PARTITIONING: corresponding graph:
         https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/delete%20method%20graph.jpg
@@ -108,7 +108,7 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 404)
 
     def test_menu_item_deletion(self):
-        """ Test API can delete an existing menu item. (DELETE request). """
+        """ - Test API can delete an existing menu item. (DELETE request). """
 
         """ GRAPH PARTITIONING: corresponding graph:
         https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/delete%20method%20graph.jpg

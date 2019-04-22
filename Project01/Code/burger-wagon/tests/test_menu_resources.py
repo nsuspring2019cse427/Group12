@@ -34,14 +34,14 @@ class MenuResourceTestCase(unittest.TestCase):
             db.create_all()
 
     def test_empty_database(self):
-        """ Ensure database is blank. """
+        """ - Ensure database is blank. """
 
         res = self.client().get('/menu')
         self.assertIn('', str(res.data))
         self.assertEqual(res.status_code, 404)
 
     def test_menu_item_creation_without_title_value(self):
-        """ Test API cannot create a menu item without title value (POST request). """
+        """ - Test API cannot create a menu item without title value (POST request). """
 
         """ GRAPH PARTITIONING: corresponding graph for
                     post method path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
@@ -55,7 +55,7 @@ class MenuResourceTestCase(unittest.TestCase):
         self.assertIn('both the title and price of the item must be provided', str(res.data))
 
     def test_menu_item_creation_without_price_value(self):
-        """ Test API cannot create a menu item without price value (POST request). """
+        """ - Test API cannot create a menu item without price value (POST request). """
 
         """ GRAPH PARTITIONING: corresponding graph for
                     post method path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
@@ -69,7 +69,7 @@ class MenuResourceTestCase(unittest.TestCase):
         self.assertIn('both the title and price of the item must be provided', str(res.data))
 
     def test_menu_item_creation(self):
-        """ Test API can create a menu item (POST request). """
+        """ - TTest API can create a menu item (POST request). """
 
         """ GRAPH PARTITIONING: corresponding graph for
                     post method path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
@@ -102,7 +102,7 @@ class MenuResourceTestCase(unittest.TestCase):
         self.assertIn('Naga burger', str(res.data))
 
     def test_api_can_not_get_menu_list(self):
-        """Test API can not get a bucketlist (GET request)."""
+        """ - Test API can not get a bucketlist (GET request)."""
 
         """ GRAPH PARTITIONING: corresponding graph for
                                              get function for getting bucketlist path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20for%20getting%20bucketlist%20graph.jpg

@@ -34,6 +34,12 @@ class PostInputSpaceTestCase(unittest.TestCase):
             "price": "Twenty bucks!"
         })
 
+        self.menu_item_price_negative = json.dumps({
+            "title": "Just a burger",
+            "description": "pet kharap hobe na 50%",
+            "price": -10.9
+        })
+
         # binds the app to the current context
         with self.app.app_context():
             # create all tables of database
@@ -49,7 +55,7 @@ class PostInputSpaceTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 400)
         self.assertIn('food title can only be alphabets', str(res.data))
 
-    def test_menu_edit_creation_should_not_accept_numerical_title(self):
+    def test_menu_edit_should_not_accept_numerical_title(self):
         """ - Test API should not successfully edit a menu item with numerical title value (PUT request). """
 
         res = self.client().post('/menu', data=self.menu_item_ok, content_type='application/json')
@@ -58,6 +64,15 @@ class PostInputSpaceTestCase(unittest.TestCase):
         res = self.client().put('/menu/1', data=self.menu_item_numerical, content_type='application/json')
         self.assertEqual(res.status_code, 400)
         self.assertIn('food title can only be alphabets', str(res.data))
+
+    def test_menu_item_creation_should_not_accept_less_than_1_price(self):
+        """ - Test API cannot edit a menu item with a price less than $1.00 (PUT request). """
+
+        self.client().post('/menu', data=self.menu_item_ok, content_type='application/json')
+
+        res = self.client().put('/menu/1', data=self.menu_item_price_negative, content_type='application/json')
+        self.assertEqual(res.status_code, 400)
+        self.assertIn('price of time cannot be less than $1.00', str(res.data))
 
     # @after
     def tearDown(self):
