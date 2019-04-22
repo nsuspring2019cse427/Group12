@@ -46,6 +46,12 @@ class PostInputSpaceTestCase(unittest.TestCase):
             "price": "APPLE"
         })
 
+        self.menu_item_int_description = json.dumps({
+            "title": "Apple burger",
+            "description": 1235,
+            "price": 25
+        })
+
         # binds the app to the current context
         with self.app.app_context():
             # create all tables of database
@@ -92,6 +98,13 @@ class PostInputSpaceTestCase(unittest.TestCase):
         res = self.client().post('/menu', data=self.menu_item_price_string, content_type='application/json')
         self.assertEqual(res.status_code, 400)
         self.assertIn('price has to be a valid positive number', str(res.data))
+
+    def test_menu_item_creation_should_not_accept_invalid_description(self):
+        """ - Test API cannot create a menu item with an not string description (PUT request). """
+
+        res = self.client().post('/menu', data=self.menu_item_int_description, content_type='application/json')
+        self.assertEqual(res.status_code, 400)
+        self.assertIn('description has to be a valid text content', str(res.data))
 
     # @after
     def tearDown(self):
