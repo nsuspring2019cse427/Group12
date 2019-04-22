@@ -29,9 +29,15 @@ class PostInputSpaceTestCase(unittest.TestCase):
         })
 
         self.menu_item_price_zero = json.dumps({
-            "title": " ",
+            "title": "Just a burger",
             "description": "pet kharap hobe na 50%",
             "price": 0
+        })
+
+        self.menu_item_price_negative = json.dumps({
+            "title": "Just a burger",
+            "description": "pet kharap hobe na 50%",
+            "price": -10.1
         })
 
         # binds the app to the current context
@@ -72,7 +78,7 @@ class PostInputSpaceTestCase(unittest.TestCase):
 
         res = self.client().post('/menu', data=self.menu_item_price_zero, content_type='application/json')
         self.assertEqual(res.status_code, 400)
-        self.assertIn('error: price of time cannot be less than $1.00', str(res.data))
+        self.assertIn('price of time cannot be less than $1.00', str(res.data))
 
     # @after
     def tearDown(self):

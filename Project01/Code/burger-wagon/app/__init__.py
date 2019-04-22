@@ -65,6 +65,9 @@ def create_app(config_name):
                 if not title.isalpha():
                     return {'error': 'invalid input: food title can only be alphabets'}, 400
 
+                if data['price'] < 1.0:
+                    return {'error': 'price of time cannot be less than $1.00'}, 400
+
                 new_entry = models.Menu(data['title'], data['price'])
             else:
                 return {'error': 'both the title and price of the item must be provided'}, 400
