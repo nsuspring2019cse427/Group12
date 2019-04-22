@@ -75,6 +75,8 @@ def create_app(config_name):
                 return {'error': 'both the title and price of the item must be provided'}, 400
 
             if 'description' in data:
+                if is_number(data['description']):
+                    return {'error': 'description has to be a valid text content'}, 400
                 new_entry.description = data['description']
 
             new_entry.save()
