@@ -40,6 +40,12 @@ class PostInputSpaceTestCase(unittest.TestCase):
             "price": -10.1
         })
 
+        self.menu_item_price_string = json.dumps({
+            "title": "Just a burger",
+            "description": "pet kharap hobe na 50%",
+            "price": "APPLE"
+        })
+
         # binds the app to the current context
         with self.app.app_context():
             # create all tables of database
@@ -77,6 +83,13 @@ class PostInputSpaceTestCase(unittest.TestCase):
         """ - Test API should not create a menu item with a price less than 1.00 (POST request). """
 
         res = self.client().post('/menu', data=self.menu_item_price_zero, content_type='application/json')
+        self.assertEqual(res.status_code, 400)
+        self.assertIn('price has to be a valid positive number', str(res.data))
+
+    def test_menu_item_creation_should_not_accept_less_than_string_price(self):
+        """ - Test API cannot create a menu item with a price that is not a valid number (PUT request). """
+
+        res = self.client().post('/menu', data=self.menu_item_price_string, content_type='application/json')
         self.assertEqual(res.status_code, 400)
         self.assertIn('price has to be a valid positive number', str(res.data))
 
