@@ -69,7 +69,7 @@ class MenuResourceTestCase(unittest.TestCase):
         self.assertIn('both the title and price of the item must be provided', str(res.data))
 
     def test_menu_item_creation(self):
-        """ - TTest API can create a menu item (POST request). """
+        """ - Test API can create a menu item (POST request). """
 
         """ GRAPH PARTITIONING: corresponding graph for
                     post method path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg

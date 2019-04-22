@@ -78,7 +78,7 @@ class PostInputSpaceTestCase(unittest.TestCase):
 
         res = self.client().post('/menu', data=self.menu_item_price_zero, content_type='application/json')
         self.assertEqual(res.status_code, 400)
-        self.assertIn('price of time cannot be less than $1.00', str(res.data))
+        self.assertIn('price has to be a valid positive number', str(res.data))
 
     # @after
     def tearDown(self):

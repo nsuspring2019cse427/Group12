@@ -22,10 +22,6 @@ class Menu(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-    # def __repr__(self):
-    #     """ Represents the object instance of the model whenever it is queries. """
-    #     return '<title {}>'.format(self.title)
-
     @property
     def serialize(self):
         """ Return object data in easily serializable format """
