@@ -57,15 +57,17 @@ def create_app(config_name):
             data = request.get_json(force=True)
 
             if 'title' in data and 'price' in data:
-                title = data['title'].replace(' ', '')
 
+                title = data['title'].replace(' ', '')
                 if not title:
                     return {'error': 'invalid input: title cannot be empty'}, 400
-
                 if not title.isalpha():
                     return {'error': 'invalid input: food title can only be alphabets'}, 400
 
-                if data['price'] < 1.0:
+                price = data['price']
+                if not is_number(price):
+                    return {'error': 'price has to be a valid positive number'}, 400
+                if price < 1.0:
                     return {'error': 'price has to be a valid positive number'}, 400
 
                 new_entry = models.Menu(data['title'], data['price'])
