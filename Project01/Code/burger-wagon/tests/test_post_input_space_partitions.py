@@ -67,9 +67,9 @@ class PostInputSpaceTestCase(unittest.TestCase):
         test path: [1,2,4,5]
         """
 
-        res = self.client().post('/menu', data=self.menu_item_numerical, content_type='application/json')
+        res = self.client().post('/menu', data=self.menu_item_empty_title, content_type='application/json')
         self.assertEqual(res.status_code, 400)
-        self.assertIn('food title can only be alphabets', str(res.data))
+        self.assertIn('invalid input: title cannot be empty', str(res.data))
 
     def test_menu_item_creation_should_not_accept_numerical_title(self):
         """ - Test API should not create a menu item with numerical title value (POST request). """

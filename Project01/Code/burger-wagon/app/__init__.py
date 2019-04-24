@@ -118,22 +118,21 @@ def create_app(config_name):
             if not item:
                 return {"error": "item not found"}, 404
 
-            if 'title' in data and 'price' in data:
-
+            if 'title' in data:
                 title = data['title'].replace(' ', '')
                 if not title:
                     return {'error': 'invalid input: title cannot be empty'}, 400
                 if not title.isalpha():
                     return {'error': 'invalid input: food title can only be alphabets'}, 400
 
+                item.title = title
+
+            if 'price' in data:
                 price = data['price']
                 if not is_number(price) or price < 1.0:
                     return {'error': 'price has to be a valid positive number'}, 400
-            else:
-                return {'error': 'both the title and price of the item must be provided'}, 400
 
-            item.title = title
-            item.price = price
+                item.price = price
 
             if 'description' in data:
                 item.description = data['description']

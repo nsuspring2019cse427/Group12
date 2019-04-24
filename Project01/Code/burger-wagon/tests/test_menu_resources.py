@@ -83,7 +83,7 @@ class MenuResourceTestCase(unittest.TestCase):
         self.assertIn('Exotic expired cheese burger', str(res.data))
 
     def test_api_can_get_menu_list(self):
-        """ Test API can get a bucketlist (GET request)."""
+        """  - Test API can get a bucketlist (GET request)."""
 
         """ GRAPH PARTITIONING: corresponding graph for
                                              get function for getting bucketlist path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20for%20getting%20bucketlist%20graph.jpg

@@ -35,12 +35,12 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
     def test_api_can_get_menu_item_by_id(self):
         """ - Test API can get a single item by using it's id. """
 
-        """ GRAPH PARTITIONING: GRAPH PARTITIONING: corresponding graph for
-                         get function by id path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20by%20id%20graph.jpg
+        """ GRAPH PARTITIONING: corresponding graph:
+        https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20by%20id%20graph.jpg
 
-                             covers edges: {1,2}
-                             test path: [1,2]
-                              """
+        covers edges: {1,2}
+        test path: [1,2]
+        """
 
         res = self.client().post('/menu', data=self.menu_item2, content_type='application/json')
         self.assertEqual(res.status_code, 201)
@@ -90,6 +90,17 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
 
         results = self.client().get('/menu/1')
         self.assertIn('Molten', str(results.data))
+
+    def test_menu_item_cannot_be_edited_with_empty_title(self):
+        """ - Test API cannot edit an existing menu item with an empty string title. (PUT request). """
+
+        res = self.client().post('/menu', data=self.menu_item2)
+        self.assertEqual(res.status_code, 201)
+
+        res = self.client().put('/menu/1', data=json.dumps(
+            {"title": " ", "description": "Tasty!", "price": 123.0}))
+        self.assertEqual(res.status_code, 400)
+        self.assertIn('invalid input: title cannot be empty', str(res.data))
 
     def test_menu_item_deletion_not_found(self):
         """ - Test API can delete an existing menu item. (DELETE request). """
