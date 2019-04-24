@@ -65,9 +65,7 @@ def create_app(config_name):
                     return {'error': 'invalid input: food title can only be alphabets'}, 400
 
                 price = data['price']
-                if not is_number(price):
-                    return {'error': 'price has to be a valid positive number'}, 400
-                if price < 1.0:
+                if not is_number(price) or price < 1.0:
                     return {'error': 'price has to be a valid positive number'}, 400
 
                 new_entry = models.Menu(data['title'], data['price'])
@@ -129,9 +127,7 @@ def create_app(config_name):
                     return {'error': 'invalid input: food title can only be alphabets'}, 400
 
                 price = data['price']
-                if not is_number(price):
-                    return {'error': 'price has to be a valid positive number'}, 400
-                if price < 1.0:
+                if not is_number(price) or price < 1.0:
                     return {'error': 'price has to be a valid positive number'}, 400
             else:
                 return {'error': 'both the title and price of the item must be provided'}, 400
