@@ -109,7 +109,12 @@ def create_app(config_name):
             return {"error": "not found"}, 404
 
         def put(self, menu_id):
-            """ PUT:  menu item with given menu ID. """
+            """ PUT:  menu item with given menu ID.
+
+            GRAPH PARTITIONING: corresponding graph can be found here
+             https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/put%20method%20graph.jpg
+
+            """
 
             data = request.get_json(force=True)
 
