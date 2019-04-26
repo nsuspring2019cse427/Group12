@@ -60,11 +60,11 @@ class PostInputSpaceTestCase(unittest.TestCase):
     def test_menu_item_edit_should_not_accept_empty_title(self):
         """ - Test API should not successfully edit a menu item with empty title (PUT request).
 
-         GRAPH PARTITIONING: corresponding graph can be found here
-             https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/put%20method%20graph.jpg
+        GRAPH PARTITIONING: corresponding graph can be found here
+        https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/put%20method%20graph.jpg
 
-          covers edges: {1,2},{2,4},{4,5}
-          test path: [1,2,,4,5]
+        covers edges: {1,2},{2,4},{4,5}
+        test path: [1,2,,4,5]
         """
 
         res = self.client().post('/menu', data=self.menu_item_ok, content_type='application/json')
@@ -78,10 +78,10 @@ class PostInputSpaceTestCase(unittest.TestCase):
         """ - Test API should not successfully edit a menu item with numerical title value (PUT request).
 
         GRAPH PARTITIONING: corresponding graph can be found here
-             https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/put%20method%20graph.jpg
+        https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/put%20method%20graph.jpg
 
-          covers edges: {1,2},{2,4},{4,6},{6,7}
-          test path: [1,2,,4,6,7]
+        covers edges: {1,2},{2,4},{4,6},{6,7}
+        test path: [1,2,,4,6,7]
         """
 
         res = self.client().post('/menu', data=self.menu_item_ok, content_type='application/json')
@@ -94,12 +94,12 @@ class PostInputSpaceTestCase(unittest.TestCase):
     def test_menu_item_edit_should_not_accept_less_than_1_price(self):
         """ - Test API cannot edit a menu item with a price less than $1.00 (PUT request).
 
-         GRAPH PARTITIONING: corresponding graph can be found here
-             https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/put%20method%20graph.jpg
+        GRAPH PARTITIONING: corresponding graph can be found here
+        https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/put%20method%20graph.jpg
 
-          covers edges: {1,2},{2,4},{4,6},{6,8},{8,9},{9,10}
-          test path: [1,2,,4,6,8,9,10]
-         """
+        covers edges: {1,2},{2,4},{4,6},{6,8},{8,9},{9,10}
+        test path: [1,2,,4,6,8,9,10]
+        """
 
         self.client().post('/menu', data=self.menu_item_ok, content_type='application/json')
 
@@ -111,10 +111,10 @@ class PostInputSpaceTestCase(unittest.TestCase):
         """ - Test API cannot edit a menu item with a price that is not a valid number (PUT request).
 
         GRAPH PARTITIONING: corresponding graph can be found here
-             https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/put%20method%20graph.jpg
+        https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/put%20method%20graph.jpg
 
-          covers edges: {1,2},{2,4},{4,6},{6,8},{8,9},{9,10}
-          test path: [1,2,,4,6,8,9,10]
+        covers edges: {1,2},{2,4},{4,6},{6,8},{8,9},{9,10}
+        test path: [1,2,,4,6,8,9,10]
         """
 
         self.client().post('/menu', data=self.menu_item_ok, content_type='application/json')

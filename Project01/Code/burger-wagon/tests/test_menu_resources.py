@@ -43,11 +43,11 @@ class MenuResourceTestCase(unittest.TestCase):
     def test_menu_item_creation_without_title_value(self):
         """ - Test API cannot create a menu item without title value (POST request).
 
-         GRAPH PARTITIONING: corresponding graph can be found here-
-         https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
+        GRAPH PARTITIONING: corresponding graph can be found here-
+        https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
                     
-         cover edges: {1,3}
-         test path: [1,3]
+        cover edges: {1,3}
+        test path: [1,3]
         """
 
         res = self.client().post('/menu', data=json.dumps({"price": 120}), content_type='application/json')
@@ -57,11 +57,11 @@ class MenuResourceTestCase(unittest.TestCase):
     def test_menu_item_creation_without_price_value(self):
         """ - Test API cannot create a menu item without price value (POST request).
 
-         GRAPH PARTITIONING: corresponding graph can be found here-
-         https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
+        GRAPH PARTITIONING: corresponding graph can be found here-
+        https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
 
-          cover edges:{1,3}
-          test path: [1,3]
+        cover edges:{1,3}
+        test path: [1,3]
         """
 
         res = self.client().post('/menu', data=json.dumps({"title": "Burger"}), content_type='application/json')
@@ -72,11 +72,11 @@ class MenuResourceTestCase(unittest.TestCase):
         """ - Test API can create a menu item (POST request).
 
         GRAPH PARTITIONING: corresponding graph can be found here-
-         https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
+        https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
                     
-         cover edges: {1,2},{2,4},{4,6},{6,8},{8,9},{9,11},{11,12},{12,14},{14,15}.
-         test path: [1,2,4,6,8,9,11,12,14,15]
-         """
+        cover edges: {1,2},{2,4},{4,6},{6,8},{8,9},{9,11},{11,12},{12,14},{14,15}.
+        test path: [1,2,4,6,8,9,11,12,14,15]
+        """
 
         res = self.client().post('/menu', data=self.menu_item, content_type='application/json')
         self.assertEqual(res.status_code, 201)
@@ -85,12 +85,12 @@ class MenuResourceTestCase(unittest.TestCase):
     def test_api_can_get_menu_list(self):
         """  - Test API can get a bucketlist (GET request)."""
 
-        """ GRAPH PARTITIONING: corresponding graph for
-                                             get function for getting bucketlist path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20for%20getting%20bucketlist%20graph.jpg
+        """ GRAPH PARTITIONING: corresponding graph-
+        https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20for%20getting%20bucketlist%20graph.jpg
                                              
-                                             cover edges:{1,2}
-                                             test path: [1,2]
-                                              """
+        cover edges:{1,2}
+        test path: [1,2]
+        """
 
         res = self.client().post('/menu', data=self.menu_item, content_type='application/json')
         self.assertEqual(res.status_code, 201)
@@ -104,11 +104,12 @@ class MenuResourceTestCase(unittest.TestCase):
     def test_api_can_not_get_menu_list(self):
         """ - Test API can not get a bucketlist (GET request)."""
 
-        """ GRAPH PARTITIONING: corresponding graph for
-                                             get function for getting bucketlist path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20for%20getting%20bucketlist%20graph.jpg
-                                             cover edges:{1,3}
-                                             test path: [1,3]
-                                              """
+        """ GRAPH PARTITIONING: corresponding graph-
+        https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20for%20getting%20bucketlist%20graph.jpg
+        
+        cover edges:{1,3}
+        test path: [1,3]
+        """
 
         res = self.client().post('/menu', data=self.menu_item, content_type='application/json')
         self.assertEqual(res.status_code, 201)

@@ -60,12 +60,12 @@ class PostInputSpaceTestCase(unittest.TestCase):
     def test_menu_item_creation_should_not_accept_empty_title(self):
         """ - Test API should not create a menu item with empty title (POST request).
 
-         GRAPH PARTITIONING: corresponding graph can be found here-
-         https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
+        GRAPH PARTITIONING: corresponding graph can be found here-
+        https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
 
-         cover edges: {1,2},{2,4},{4,5}
-         test path: [1,2,4,5]
-         """
+        cover edges: {1,2},{2,4},{4,5}
+        test path: [1,2,4,5]
+        """
 
         res = self.client().post('/menu', data=self.menu_item_empty_title, content_type='application/json')
         self.assertEqual(res.status_code, 400)
@@ -75,11 +75,11 @@ class PostInputSpaceTestCase(unittest.TestCase):
         """ - Test API should not create a menu item with numerical title value (POST request).
 
         GRAPH PARTITIONING: corresponding graph can be found here-
-         https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
+        https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
 
-         cover edges: {1,2},{2,4},{4,6},{6,7}
-         test path: [1,2,4,6,7]
-         """
+        cover edges: {1,2},{2,4},{4,6},{6,7}
+        test path: [1,2,4,6,7]
+        """
 
         res = self.client().post('/menu', data=self.menu_item_numerical, content_type='application/json')
         self.assertEqual(res.status_code, 400)
@@ -89,11 +89,11 @@ class PostInputSpaceTestCase(unittest.TestCase):
         """ - Test API should not create a menu item with a price less than 1.00 (POST request).
 
         GRAPH PARTITIONING: corresponding graph can be found here-
-         https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
+        https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
 
-         cover edges: {1,2},{2,4},{4,6},{6,8},{8,9},{9,10}
-         test path: [1,2,4,6,8,9,10]
-         """
+        cover edges: {1,2},{2,4},{4,6},{6,8},{8,9},{9,10}
+        test path: [1,2,4,6,8,9,10]
+        """
 
         res = self.client().post('/menu', data=self.menu_item_price_zero, content_type='application/json')
         self.assertEqual(res.status_code, 400)
@@ -101,12 +101,13 @@ class PostInputSpaceTestCase(unittest.TestCase):
 
     def test_menu_item_creation_should_not_accept_less_than_string_price(self):
         """ - Test API cannot create a menu item with a price that is not a valid number (PUT request).
-        GRAPH PARTITIONING: corresponding graph can be found here-
-         https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
 
-         cover edges: {1,2},{2,4},{4,6},{6,8},{8,9},{9,10}
-         test path: [1,2,4,6,8,9,10]
-         """
+        GRAPH PARTITIONING: corresponding graph can be found here-
+        https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
+
+        cover edges: {1,2},{2,4},{4,6},{6,8},{8,9},{9,10}
+        test path: [1,2,4,6,8,9,10]
+        """
 
         res = self.client().post('/menu', data=self.menu_item_price_string, content_type='application/json')
         self.assertEqual(res.status_code, 400)
@@ -114,11 +115,12 @@ class PostInputSpaceTestCase(unittest.TestCase):
 
     def test_menu_item_creation_should_not_accept_invalid_description(self):
         """ - Test API cannot create a menu item with number description instead of valid text (PUT request).
-        GRAPH PARTITIONING: corresponding graph can be found here-
-         https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
 
-         cover edges: {1,2},{2,4},{4,6},{6,8},{8,9},{9,11},{11,12},{12,13}.
-         test path: [1,2,4,6,8,9,11,12,13]
+        GRAPH PARTITIONING: corresponding graph can be found here-
+        https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
+
+        cover edges: {1,2},{2,4},{4,6},{6,8},{8,9},{9,11},{11,12},{12,13}.
+        test path: [1,2,4,6,8,9,11,12,13]
 
         """
 

@@ -72,11 +72,11 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
     def test_menu_item_can_be_edited_not_found(self):
         """ - Test API cannot edit an existing menu item which cannot be found. (PUT request).
 
-         GRAPH PARTITIONING: corresponding graph can be found here
-             https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/put%20method%20graph.jpg
+        GRAPH PARTITIONING: corresponding graph can be found here
+        https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/put%20method%20graph.jpg
 
-          covers edges: {1,2},{2,3}
-          test path: [1,2,3]
+        covers edges: {1,2},{2,3}
+        test path: [1,2,3]
         """
 
         res = self.client().put('/menu/0', data=json.dumps(
@@ -88,11 +88,11 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
     def test_menu_item_can_be_edited(self):
         """ - Test API can edit an existing menu item. (PUT request).
 
-         GRAPH PARTITIONING: corresponding graph can be found here
-             https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/put%20method%20graph.jpg
+        GRAPH PARTITIONING: corresponding graph can be found here
+        https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/put%20method%20graph.jpg
 
-          covers edges: {1,2},{2,4},{4,6},{6,8},{8,9},{9,11},{11,12},{12,13}
-          test path: [1,2,,4,6,8,9,11,12,13]
+        covers edges: {1,2},{2,4},{4,6},{6,8},{8,9},{9,11},{11,12},{12,13}
+        test path: [1,2,,4,6,8,9,11,12,13]
         """
 
         res = self.client().post('/menu', data=self.menu_item2)
@@ -108,11 +108,11 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
     def test_menu_item_cannot_be_edited_with_empty_title(self):
         """ - Test API cannot edit an existing menu item with an empty string title. (PUT request).
 
-          GRAPH PARTITIONING: corresponding graph can be found here
-             https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/put%20method%20graph.jpg
+        GRAPH PARTITIONING: corresponding graph can be found here
+        https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/put%20method%20graph.jpg
 
-          covers edges: {1,2},{2,4},{4,5}
-          test path: [1,2,,4,5]
+        covers edges: {1,2},{2,4},{4,5}
+        test path: [1,2,,4,5]
         """
 
         res = self.client().post('/menu', data=self.menu_item2)
@@ -136,6 +136,7 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
         json_data = json.dumps({'title': 'Regular burger', 'price': 23})
         res = self.client().post('/menu', data=json_data, content_type='application/json')
         self.assertEqual(res.status_code, 201)
+
         res = self.client().delete('/menu/44')
         self.assertEqual(res.status_code, 404)
 
@@ -145,8 +146,8 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
         """ GRAPH PARTITIONING: corresponding graph:
         https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/delete%20method%20graph.jpg
          
-         covers edges: {1,2}
-         test path: [1,2]
+        covers edges: {1,2}
+        test path: [1,2]
         """
 
         json_data = json.dumps({'title': 'Regular burger', 'price': 23})

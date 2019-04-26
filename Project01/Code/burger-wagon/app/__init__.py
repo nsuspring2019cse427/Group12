@@ -33,8 +33,8 @@ def create_app(config_name):
         def get(self):
             """ GET: menu list.
 
-             GRAPH PARTITIONING: corresponding graph can be found here-
-             https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20for%20getting%20bucketlist%20graph.jpg
+            GRAPH PARTITIONING: corresponding graph can be found here-
+            https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20for%20getting%20bucketlist%20graph.jpg
 
             """
 
@@ -48,8 +48,8 @@ def create_app(config_name):
         def post(self):
             """ CREATE: menu item.
 
-             GRAPH PARTITIONING: corresponding graph can be found here-
-             https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
+            GRAPH PARTITIONING: corresponding graph can be found here-
+            https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
 
             """
 
@@ -97,8 +97,8 @@ def create_app(config_name):
         def get(self, menu_id):
             """ GET:  menu item with given menu ID.
 
-             GRAPH PARTITIONING: corresponding graph can be found here
-             https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20by%20id%20graph.jpg
+            GRAPH PARTITIONING: corresponding graph can be found here
+            https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/get%20function%20by%20id%20graph.jpg
 
             """
 
@@ -112,7 +112,7 @@ def create_app(config_name):
             """ PUT:  menu item with given menu ID.
 
             GRAPH PARTITIONING: corresponding graph can be found here
-             https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/put%20method%20graph.jpg
+            https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/put%20method%20graph.jpg
 
             """
 
@@ -157,8 +157,8 @@ def create_app(config_name):
         def delete(self, menu_id):
             """ DELETE:  menu item with given menu ID.
 
-             GRAPH PARTITIONING: corresponding graph can be found here-
-             https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/delete%20method%20graph.jpg
+            GRAPH PARTITIONING: corresponding graph can be found here-
+            https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/delete%20method%20graph.jpg
 
             """
 
