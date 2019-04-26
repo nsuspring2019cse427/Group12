@@ -41,42 +41,42 @@ class MenuResourceTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 404)
 
     def test_menu_item_creation_without_title_value(self):
-        """ - Test API cannot create a menu item without title value (POST request). """
+        """ - Test API cannot create a menu item without title value (POST request).
 
-        """ GRAPH PARTITIONING: corresponding graph for
-                    post method path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
+         GRAPH PARTITIONING: corresponding graph can be found here-
+         https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
                     
-                       cover edges: {1,3}
-                       test path: [1,3] 
-                     """
+         cover edges: {1,3}
+         test path: [1,3]
+        """
 
         res = self.client().post('/menu', data=json.dumps({"price": 120}), content_type='application/json')
         self.assertEqual(res.status_code, 400)
         self.assertIn('both the title and price of the item must be provided', str(res.data))
 
     def test_menu_item_creation_without_price_value(self):
-        """ - Test API cannot create a menu item without price value (POST request). """
+        """ - Test API cannot create a menu item without price value (POST request).
 
-        """ GRAPH PARTITIONING: corresponding graph for
-                    post method path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
-                    
-                       cover edges:{1,3}
-                       test path: [1,3]
-                     """
+         GRAPH PARTITIONING: corresponding graph can be found here-
+         https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
+
+          cover edges:{1,3}
+          test path: [1,3]
+        """
 
         res = self.client().post('/menu', data=json.dumps({"title": "Burger"}), content_type='application/json')
         self.assertEqual(res.status_code, 400)
         self.assertIn('both the title and price of the item must be provided', str(res.data))
 
     def test_menu_item_creation(self):
-        """ - Test API can create a menu item (POST request). """
+        """ - Test API can create a menu item (POST request).
 
-        """ GRAPH PARTITIONING: corresponding graph for
-                    post method path:https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
+        GRAPH PARTITIONING: corresponding graph can be found here-
+         https://github.com/nsuspring2019cse427/Group12/blob/master/Project01/Documentation/resources/post%20method%20graph.jpg
                     
-                    cover edges: {1,2},{2,4},{4,6},{6,8},{8,9},{9,10}.
-                    test path: [1,2,4,6,8,9,10]
-                     """
+         cover edges: {1,2},{2,4},{4,6},{6,8},{8,9},{9,11},{11,12},{12,14},{14,15}.
+         test path: [1,2,4,6,8,9,11,12,14,15]
+         """
 
         res = self.client().post('/menu', data=self.menu_item, content_type='application/json')
         self.assertEqual(res.status_code, 201)
