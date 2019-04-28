@@ -140,6 +140,8 @@ def create_app(config_name):
                 item.price = price
 
             if 'description' in data:
+                if is_number(data['description']):
+                    return {'error': 'description has to be a valid text content'}, 400
                 item.description = data['description']
 
             item.save()

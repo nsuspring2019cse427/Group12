@@ -43,7 +43,8 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
         """
 
         res = self.client().post('/menu', data=self.menu_item2, content_type='application/json')
-        self.assertEqual(res.status_code, 201)
+        if res.status_code != 201:
+            self.fail("precondition's not met")
 
         result_in_json = json.loads(res.data.decode('utf-8').replace("'", "\""))
         result = self.client().get(f'/menu/{format(result_in_json["id"])}')
@@ -62,10 +63,14 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
         """
 
         res = self.client().post('/menu', data=self.menu_item2, content_type='application/json')
-        self.assertEqual(res.status_code, 201)
+        if res.status_code != 201:
+            self.fail("precondition's not met")
         result_in_json = json.loads(res.data.decode('utf-8').replace("'", "\""))
+
         res1 = self.client().delete('/menu/1')
-        self.assertEqual(res1.status_code, 204)
+        if res1.status_code != 204:
+            self.fail("precondition's not met")
+
         result = self.client().get(f'/menu/{format(result_in_json["id"])}')
         self.assertEqual(result.status_code, 404)
 
@@ -96,13 +101,16 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
         """
 
         res = self.client().post('/menu', data=self.menu_item2)
-        self.assertEqual(res.status_code, 201)
+        if res.status_code != 201:
+            self.fail("precondition's not met")
 
         res = self.client().put('/menu/1', data=json.dumps(
             {"title": "Molten Cheese Burger", "description": "Tasty!", "price": 123.0}))
-        self.assertEqual(res.status_code, 200)
+        if res.status_code != 200:
+            self.fail("precondition's not met")
 
         results = self.client().get('/menu/1')
+        self.assertEqual(results.status_code, 200)
         self.assertIn('Molten', str(results.data))
 
     def test_menu_item_cannot_be_edited_with_empty_title(self):
@@ -116,7 +124,8 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
         """
 
         res = self.client().post('/menu', data=self.menu_item2)
-        self.assertEqual(res.status_code, 201)
+        if res.status_code != 201:
+            self.fail("precondition's not met")
 
         res = self.client().put('/menu/1', data=json.dumps(
             {"title": " ", "description": "Tasty!", "price": 123.0}))
@@ -135,7 +144,8 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
 
         json_data = json.dumps({'title': 'Regular burger', 'price': 23})
         res = self.client().post('/menu', data=json_data, content_type='application/json')
-        self.assertEqual(res.status_code, 201)
+        if res.status_code != 201:
+            self.fail("precondition's not met")
 
         res = self.client().delete('/menu/44')
         self.assertEqual(res.status_code, 404)
@@ -152,7 +162,9 @@ class MenuDetailsResourceTestCase(unittest.TestCase):
 
         json_data = json.dumps({'title': 'Regular burger', 'price': 23})
         res = self.client().post('/menu', data=json_data, content_type='application/json')
-        self.assertEqual(res.status_code, 201)
+        if res.status_code != 201:
+            self.fail("precondition's not met")
+
         res = self.client().delete('/menu/1')
         self.assertEqual(res.status_code, 204)
         # Test to see if it exists, should return a 404

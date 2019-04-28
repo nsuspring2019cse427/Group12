@@ -93,9 +93,13 @@ class MenuResourceTestCase(unittest.TestCase):
         """
 
         res = self.client().post('/menu', data=self.menu_item, content_type='application/json')
-        self.assertEqual(res.status_code, 201)
+        if res.status_code != 201:
+            self.fail("precondition's not met")
+
         res = self.client().post('/menu', data=self.menu_item2, content_type='application/json')
-        self.assertEqual(res.status_code, 201)
+        if res.status_code != 201:
+            self.fail("precondition's not met")
+
         res = self.client().get('/menu')
         self.assertEqual(res.status_code, 200)
         self.assertIn('Exotic expired cheese burger', str(res.data))
@@ -111,14 +115,17 @@ class MenuResourceTestCase(unittest.TestCase):
         test path: [1,3]
         """
 
-        res = self.client().post('/menu', data=self.menu_item, content_type='application/json')
-        self.assertEqual(res.status_code, 201)
-        res = self.client().post('/menu', data=self.menu_item2, content_type='application/json')
-        self.assertEqual(res.status_code, 201)
-        res1 = self.client().delete('/menu/1')
-        self.assertEqual(res1.status_code, 204)
-        res2 = self.client().delete('/menu/2')
-        self.assertEqual(res2.status_code, 204)
+        self.client().post('/menu', data=self.menu_item, content_type='application/json')
+        self.client().post('/menu', data=self.menu_item2, content_type='application/json')
+
+        res = self.client().delete('/menu/1')
+        if res.status_code != 204:
+            self.fail("precondition's not met")
+
+        res = self.client().delete('/menu/2')
+        if res.status_code != 204:
+            self.fail("precondition's not met")
+
         result = self.client().get('/menu')
         self.assertEqual(result.status_code, 404)
 

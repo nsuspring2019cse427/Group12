@@ -67,8 +67,7 @@ class PostInputSpaceTestCase(unittest.TestCase):
         test path: [1,2,,4,5]
         """
 
-        res = self.client().post('/menu', data=self.menu_item_ok, content_type='application/json')
-        self.assertEqual(res.status_code, 201)
+        self.client().post('/menu', data=self.menu_item_ok, content_type='application/json')
 
         res = self.client().put('/menu/1', data=self.menu_item_numerical, content_type='application/json')
         self.assertEqual(res.status_code, 400)
@@ -84,8 +83,7 @@ class PostInputSpaceTestCase(unittest.TestCase):
         test path: [1,2,,4,6,7]
         """
 
-        res = self.client().post('/menu', data=self.menu_item_ok, content_type='application/json')
-        self.assertEqual(res.status_code, 201)
+        self.client().post('/menu', data=self.menu_item_ok, content_type='application/json')
 
         res = self.client().put('/menu/1', data=self.menu_item_numerical, content_type='application/json')
         self.assertEqual(res.status_code, 400)
@@ -124,9 +122,11 @@ class PostInputSpaceTestCase(unittest.TestCase):
         self.assertIn('price has to be a valid positive number', str(res.data))
 
     def test_menu_item_creation_should_not_accept_invalid_description(self):
-        """ - Test API cannot edit a menu item with an not string description (PUT request). """
+        """ - Test API cannot edit a menu item with a not string description (PUT request). """
 
-        res = self.client().post('/menu', data=self.menu_item_int_description, content_type='application/json')
+        self.client().post('/menu', data=self.menu_item_ok, content_type='application/json')
+
+        res = self.client().put('/menu/1', data=self.menu_item_int_description, content_type='application/json')
         self.assertEqual(res.status_code, 400)
         self.assertIn('description has to be a valid text content', str(res.data))
 
