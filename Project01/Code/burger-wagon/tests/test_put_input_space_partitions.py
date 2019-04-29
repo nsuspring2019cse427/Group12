@@ -121,7 +121,7 @@ class PostInputSpaceTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 400)
         self.assertIn('price has to be a valid positive number', str(res.data))
 
-    def test_menu_item_creation_should_not_accept_invalid_description(self):
+    def test_menu_item_edit_should_not_accept_invalid_description(self):
         """ - Test API cannot edit a menu item with a not string description (PUT request). """
 
         self.client().post('/menu', data=self.menu_item_ok, content_type='application/json')
