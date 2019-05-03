@@ -1,0 +1,396 @@
+:root {
+    --hue: 270;
+    --bgcolor-root: black;
+    --bgcolor-header: rgba(0, 0, 0, .95);
+    --bgcolor-secondary: hsl(var(--hue), 9%, 6%);
+    --bgcolor-controls: hsl(var(--hue), 8%, 8%);
+    --bgcolor-controls-hover: hsl(var(--hue), 7%, 9%);
+    --bgcolor-controls-active: hsl(var(--hue), 13%, 14%);
+    --bgcolor-avatar: hsl(var(--hue), 19%, 27%);
+    --bgcolor-alt: white;
+    --color-text: white;
+    --color-muted: hsl(var(--hue), 5%, 60%);
+    --color-border: var(--bgcolor-controls);
+    --color-accent: hsl(var(--hue), 100%, 85%);
+    --color-red: crimson;
+    --color-alt: black;
+    --shadow: 0 0 1rem 0 rgba(0, 0, 0, .7);
+}
+
+body {
+    background-color: var(--bgcolor-root);
+    box-sizing: border-box;
+    color: var(--color-text);
+    font-family: sans-serif;
+    margin: 0;
+    padding-bottom: 6rem;
+}
+
+*,
+::before,
+::after {
+    box-sizing: inherit;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.js-focus-visible :focus:not(.focus-visible) {
+    outline: none;
+}
+
+[disabled] {
+    opacity: .7;
+    cursor: not-allowed;
+}
+
+a {
+    color: var(--color-accent);
+}
+
+button,
+input[type=text],
+input[type=email],
+textarea {
+    background-color: var(--bgcolor-controls);
+    border: none;
+    border-radius: .25rem;
+    color: inherit;
+    font: inherit;
+}
+
+button,
+input[type=text],
+input[type=email] {
+    padding: 0 1rem;
+    height: 2rem;
+}
+
+button {
+    display: inline-flex;
+    align-items: center;
+    touch-action: manipulation;
+    user-select: none;
+}
+
+button > * + * {
+    margin-left: .5rem;
+}
+
+textarea {
+    padding: .5rem 1rem;
+    min-height: 4rem;
+    width: 100%;
+}
+
+button:hover,
+input[type=text]:hover,
+input[type=email]:hover,
+textarea:hover {
+    background-color: var(--bgcolor-controls-hover) !important;
+}
+
+button.focus-visible:focus,
+input[type=text]:focus,
+input[type=email]:focus,
+textarea:focus {
+    background-color: var(--bgcolor-alt) !important;
+    color: var(--color-alt) !important;
+    outline: none !important;
+}
+
+button:active {
+    background-color: var(--bgcolor-controls-active) !important;
+}
+
+img {
+    max-width: 100%;
+}
+
+label {
+    align-items: center;
+    display: inline-flex;
+    user-select: none;
+    height: 2rem;
+}
+
+label input[type=checkbox] {
+    margin-right: .5rem;
+}
+
+time {
+    color: var(--color-muted);
+    font-size: .875rem;
+}
+
+header {
+    background-color: var(--bgcolor-header);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--shadow);
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    overflow: auto;
+}
+
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  width: 25%; /* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
+  text-align: center; /* If you want the text to be centered */
+}
+
+/*header .brick[aria-current=page] {*/
+/*    position: relative;*/
+/*    border-bottom-left-radius: 0;*/
+/*    border-bottom-right-radius: 0;*/
+/*}*/
+
+/*header .brick[aria-current=page]::after {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    top: 100%;*/
+/*    display: block;*/
+/*    width: 100%;*/
+/*    height: 3px;*/
+/*    border-radius: 1px;*/
+/*    background-color: currentColor;*/
+/*}*/
+
+/*header nav > * + * {*/
+/*    margin-left: .5rem;*/
+/*}*/
+
+header .avatar {
+    --size: 1.25rem;
+    font-size: .416rem;
+}
+
+@media screen and (min-width: 415px) {
+    header {
+        bottom: initial;
+        top: 0;
+    }
+
+    body {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+}
+
+main:empty {
+    padding-top: 3rem;
+    text-align: center;
+    font-family: monospace;
+}
+
+main:empty::after {
+    content: 'Loading... Please wait.';
+    animation: pop 100ms linear;
+}
+
+@keyframes pop {
+    0%, 99% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 65ch;
+    width: calc(100% - 2rem);
+}
+
+.container.wide {
+    max-width: 120ch;
+    position: relative;
+}
+
+.brick {
+    border-radius: .25rem;
+    color: inherit;
+    text-decoration: none;
+    height: 2rem;
+    padding: 0 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brick > * + * {
+    margin-left: .5rem;
+}
+
+a.brick:hover {
+    background-color: var(--bgcolor-controls-hover) !important;
+}
+
+a.brick.focus-visible:focus {
+    background-color: var(--bgcolor-alt) !important;
+    color: var(--color-alt) !important;
+    outline: none !important;
+}
+
+a.brick:active {
+    background-color: var(--bgcolor-controls-active) !important;
+}
+
+.icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: currentColor;
+}
+
+
+.login-form {
+    display: flex;
+    align-items: center;
+    max-width: 320px;
+}
+
+.login-form input {
+    width: 100%;
+}
+
+.login-form button {
+    margin-left: .5rem;
+}
+
+.post-form {
+    margin-bottom: 1rem;
+}
+
+.post-form-button {
+    margin-top: .5rem;
+}
+
+.queue-button {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: var(--shadow);
+}
+
+.posts-wrapper .queue-button {
+    top: 1rem;
+    animation: slide-middle-top 300ms ease-in-out;
+}
+
+@keyframes slide-middle-top {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -100%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+[role="feed"]:not([aria-busy=true]):empty {
+    padding-top: 1rem;
+    text-align: center;
+}
+
+[role="feed"]:not([aria-busy=true]):empty::after {
+    content: 'Empty.';
+}
+
+.micro-post + .micro-post {
+    border-top: 1px solid var(--color-border);
+}
+
+.micro-post {
+    padding: 1rem;
+}
+
+.micro-post:focus {
+    outline: 3px dashed var(--color-accent);
+}
+
+.micro-post-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.micro-post-user {
+    display: inline-flex;
+    align-items: center;
+}
+
+.micro-post-user .avatar {
+    margin-right: .5rem;
+}
+
+.micro-post-header a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.micro-post-content {
+    margin: 1rem 0;
+    word-wrap: break-word;
+}
+
+.micro-post-controls {
+    color: var(--color-muted);
+    display: flex;
+    align-items: center;
+}
+
+.micro-post-controls button {
+    background-color: transparent;
+}
+
+.micro-post-controls > * + * {
+    margin-left: .5rem;
+}
+
+.like-button[aria-pressed=true] {
+    color: var(--color-text);
+}
+
+.like-button[aria-pressed=true] .icon {
+    fill: var(--color-red);
+}
+
+.load-more-button {
+    display: flex;
+}
+
+.center-vertically {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.comment-form {
+    margin-top: 1rem;
+}
+
+.comment-form button {
+    margin-top: .5rem;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+}

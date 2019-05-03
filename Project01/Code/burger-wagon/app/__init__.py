@@ -1,4 +1,5 @@
 from flask import Flask, request
+from flask_cors import CORS
 from flask_restplus import Api, Resource
 from flask_sqlalchemy import SQLAlchemy
 
@@ -20,6 +21,7 @@ def create_app(config_name):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_object(app_config[config_name])
     db.init_app(app)
+    CORS(app)
     api = Api(app, version='1.0', title='Burger Wagon', description='api endpoints')
     api.namespace(name='', description='menu of all the items available and CRUD operations')
 
