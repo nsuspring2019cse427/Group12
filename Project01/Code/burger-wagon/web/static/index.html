@@ -9,13 +9,13 @@
 <div class="container wide">
     <nav style="text-align: center;">
         <img src="./img/logo.svg" alt="logo" height="100%" width="100%"/>
-        <a class="brick" href="http://localhost:5000/menu" title="Home">
+        <a class="brick" onclick="home()" title="Home">
             <img src="./img/burger.svg" alt="Burger wagon" height="24px" width="22px"/>
         </a>
-        <a class="brick" href="http://localhost:5000/menu" title="Home">
+        <a class="brick" onclick="home()" title="Home">
             <h4>Burger Wagon</h4>
         </a>
-        <a class="brick" href="http://localhost:5000/menu" title="Home">
+        <a class="brick" onclick="home()" title="Home">
             <h4>Home</h4>
             <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <g data-name="Layer 2">
@@ -27,35 +27,20 @@
             </svg>
         </a>
         <a class="brick" title="Menu" onclick="menu()">
-            <h4>Menu</h4>
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <g data-name="Layer 2">
-                    <g data-name="home">
-                        <rect width="24" height="24" opacity="0"/>
-                        <path d="M20.42 10.18L12.71 2.3a1 1 0 0 0-1.42 0l-7.71 7.89A2 2 0 0 0 3 11.62V20a2 2 0 0 0 1.89 2h14.22A2 2 0 0 0 21 20v-8.38a2.07 2.07 0 0 0-.58-1.44zM10 20v-6h4v6zm9 0h-3v-7a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v7H5v-8.42l7-7.15 7 7.19z"/>
-                    </g>
-                </g>
-            </svg>
+            <h4>Menu 🧾</h4>
         </a>
         <a class="brick" title="Contact" onclick="contact()">
-            <h4>Contact</h4>
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <g data-name="Layer 2">
-                    <g data-name="home">
-                        <rect width="24" height="24" opacity="0"/>
-                        <path d="M20.42 10.18L12.71 2.3a1 1 0 0 0-1.42 0l-7.71 7.89A2 2 0 0 0 3 11.62V20a2 2 0 0 0 1.89 2h14.22A2 2 0 0 0 21 20v-8.38a2.07 2.07 0 0 0-.58-1.44zM10 20v-6h4v6zm9 0h-3v-7a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v7H5v-8.42l7-7.15 7 7.19z"/>
-                    </g>
-                </g>
-            </svg>
+            <h4>Contact 🗺</h4>
         </a>
-        <!--        <button id="logout-button">Logout</button>-->
     </nav>
     <br>
     <p style="text-align: center;"><i>We craft the most delicate fresh burgers for your taste buds!</i></p>
+    <span id="home"></span>
     <ul id="menu-items"></ul>
-    <footer>
-        <p>Burger Wagon</p>
-        <p> Copyright 1999-2019 Burger Wagon. All Rights Reserved.</p>
+    <span id="contacts"></span>
+    <br><br>
+    <footer style="text-align: center;">
+        <p>Copyright 1999-2019 Burger Wagon. All Rights Reserved.</p>
     </footer>
 </div>
 <script>
@@ -67,12 +52,26 @@
         return parent.appendChild(el);
     }
 
+    function show(parent) {
+        if (parent.firstChild) {
+            parent.style.display = "block";
+        }
+    }
+
+    function hide(parent) {
+        if (parent.firstChild) {
+            parent.style.display = "none";
+        }
+    }
+
     function menu() {
         const ul = document.getElementById('menu-items');
         if (ul.firstChild) {
             ul.style.display = "block";
+            hide(document.getElementById('contacts'));
             return
         }
+
         const url = 'http://localhost:5000/menu';
         fetch(url)
             .then((resp) => resp.json())
@@ -95,6 +94,37 @@
     function contact() {
         const ul = document.getElementById('menu-items');
         ul.style.display = "none";
+
+        const contact = document.getElementById('contacts');
+        show(contact);
+        contact.innerHTML = `
+                <h2>Contact</h2>
+                <h4>Address</h4>
+                <p>132 Lane No 5, Dhaka 1212, Bangladesh</p>
+                <br>
+                <h4>Phone</h4>
+                <p>026594875</p>
+                <h4>Mobile</h4>
+                <p>0183945955</p>`
+    }
+
+    function home() {
+
+
+        const home = document.getElementById('home');
+        if (home.firstChild) {
+            home.style.display = "block";
+            hide(document.getElementById('menu-items'));
+            hide(document.getElementById('contact'));
+            return
+        }
+        show(home);
+        home.innerHTML = `
+                <div style="text-align: center;">
+                    <h2>Welcome, burger lovers! 🍔🔥</h2>
+                    <h4><i>Browse our unlimited variations of burgers</i></h4>
+                    <img src="img/home.jpg" height="358px">
+                </div>`
     }
 </script>
 </body>
